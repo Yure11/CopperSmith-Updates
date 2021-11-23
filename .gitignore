@@ -127,3 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+.streamlit
+coppersmith-updates-7a7969ad0c18.json
