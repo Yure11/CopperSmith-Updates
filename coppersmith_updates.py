@@ -26,7 +26,7 @@ update_temp = """
 <div style="background-color:#b87333;padding:10px;border-radius:10px;margin:10px;">
 <h5 style="color:white;text-align:center;">{} for {}</h5>
 <h5 style="color:white;text-align:center;">Change: {} <br> Action: {}</h5>
-<h6 style="color:white;">Change applies to: {} Department(s) and {} supplier(s) <br> Exceptions: {} <br> Approved on {} by {} </h6>
+<h6 style="color:white;"> <a href="{}">Link to more info</a> <br> Change applies to: {} Department(s) and {} supplier(s) <br> Exceptions: {} <br> Approved on {} by {} </h6>
 </div>
 """
 
@@ -78,7 +78,7 @@ st.subheader("Latest Updates")
 
 # Print results
 for row in rows:
-    st.markdown(update_temp.format(row.Update, row.Category, row.Change, row.Action, row.Department, row.Supplier, row.Exception, row.Date, row.Approved_By), unsafe_allow_html=True)
+    st.markdown(update_temp.format(row.Update, row.Category, row.Change, row.Action, row.Link, row.Department, row.Supplier, row.Exception, row.Date, row.Approved_By), unsafe_allow_html=True)
 
 
 # Sidebar
