@@ -21,6 +21,16 @@ def run_query(query):
 sheet_url = st.secrets["private_gsheets_url"]
 rows = run_query(f'SELECT * FROM "{sheet_url}"')
 
+# Layout Templates
+update_temp = """
+<div style="background-color:#b87333;padding:10px;border-radius:10px;margin:10px;">
+<h5 style="color:white;text-align:center;">{} for {}</h5>
+<h6 style="color:white;">Change applies to: {} Department(s) and {} supplier(s)</h6>
+<h6 style="color:white;">Exceptions: {}</h6>
+<h6 style="color:white;">Approved on {} by {} </h6>
+</div>
+"""
+
 
 # Functions
 def list_categories():
@@ -61,11 +71,12 @@ st.header("CopperSmith")
 
 st.subheader("Latest Updates")
 
-# Print results.
+# Print results
 for row in rows:
-    st.write(row.Update)
+    st.markdown(update_temp.format(row.Update, row.Category, row.Department, row.Supplier, row.Exceptions, row.Date, row.Approved_By), unsafe_allow_html=True)
 
-# Side bar
+
+# Sidebar
 st.sidebar.subheader("Sorting Options")
 
 # date_options = st.sidebar.selectbox('Date', ('11/23/2021', '11/24/2021'))
