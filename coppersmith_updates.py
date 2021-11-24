@@ -51,7 +51,7 @@ def list_suppliers():
         else:
             search_list.append(row.Supplier)
     search_list.append(" None")
-    # search_list.sort()
+    search_list.sort()
     return search_list
 
 def list_departments():
@@ -62,7 +62,7 @@ def list_departments():
         else:
             search_list.append(row.Department)
     search_list.append(" None")
-    # search_list.sort()
+    search_list.sort()
     return search_list
 
 
