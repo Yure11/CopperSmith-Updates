@@ -21,6 +21,42 @@ def run_query(query):
 sheet_url = st.secrets["private_gsheets_url"]
 rows = run_query(f'SELECT * FROM "{sheet_url}"')
 
+
+# Functions
+def list_categories():
+    search_list = []
+    for row in rows:
+        if row.Category in search_list:
+            continue
+        else:
+            search_list.append(row.Category)
+    return search_list
+
+def list_suppliers():
+    search_list = []
+    for row in rows:
+        if row.Supplier in search_list:
+            continue
+        else:
+            search_list.append(row.Supplier)
+    return search_list
+
+def list_departments():
+    search_list = []
+    for row in rows:
+        if row.Department in search_list:
+            continue
+        else:
+            search_list.append(row.Department)
+    return search_list
+
+
+categories = list_categories()
+suppliers = list_suppliers()
+departments = list_departments()
+
+
+# App
 st.header("CopperSmith")
 
 st.subheader("Latest Updates")
@@ -32,8 +68,8 @@ for row in rows:
 # Side bar
 st.sidebar.subheader("Sorting Options")
 
-date_options = st.sidebar.selectbox('Date', ('11/23/2021', '11/24/2021'))
-category_options = st.sidebar.selectbox('Category', ('Rivet Finish', 'Metal Size'))
-supplier_options = st.sidebar.selectbox('Supplier', ('Arcob', 'Artizen', 'Handcraft'))
-department_options = st.sidebar.selectbox('Department', ('Design', 'Sales', 'Production', 'Support'))
+# date_options = st.sidebar.selectbox('Date', ('11/23/2021', '11/24/2021'))
+category_options = st.sidebar.selectbox('Category', (categories))
+supplier_options = st.sidebar.selectbox('Supplier', (suppliers))
+department_options = st.sidebar.selectbox('Department', (departments))
 
