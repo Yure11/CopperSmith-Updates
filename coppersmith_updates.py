@@ -25,9 +25,8 @@ rows = run_query(f'SELECT * FROM "{sheet_url}"')
 update_temp = """
 <div style="background-color:#b87333;padding:10px;border-radius:10px;margin:10px;">
 <h5 style="color:white;text-align:center;">{} for {}</h5>
-<h6 style="color:white;">Change applies to: {} Department(s) and {} supplier(s)</h6>
-<h6 style="color:white;">Exceptions: {}</h6>
-<h6 style="color:white;">Approved on {} by {} </h6>
+<h5 style="color:white;text-align:center;">Change: {} <br> Action: {}</h5>
+<h6 style="color:white;">Change applies to: {} Department(s) and {} supplier(s) <br> Exceptions: {} <br> Approved on {} by {} </h6>
 </div>
 """
 
@@ -52,7 +51,7 @@ def list_suppliers():
         else:
             search_list.append(row.Supplier)
     search_list.append(" None")
-    search_list.sort()
+    # search_list.sort()
     return search_list
 
 def list_departments():
@@ -63,7 +62,7 @@ def list_departments():
         else:
             search_list.append(row.Department)
     search_list.append(" None")
-    search_list.sort()
+    # search_list.sort()
     return search_list
 
 
@@ -79,7 +78,7 @@ st.subheader("Latest Updates")
 
 # Print results
 for row in rows:
-    st.markdown(update_temp.format(row.Update, row.Category, row.Department, row.Supplier, row.Exceptions, row.Date, row.Approved_By), unsafe_allow_html=True)
+    st.markdown(update_temp.format(row.Update, row.Category, row.Change, row.Action, row.Department, row.Supplier, row.Exception, row.Date, row.Approved_By), unsafe_allow_html=True)
 
 
 # Sidebar
@@ -87,6 +86,6 @@ st.sidebar.subheader("Sorting Options")
 
 # date_options = st.sidebar.selectbox('Date', ('11/23/2021', '11/24/2021'))
 category_options = st.sidebar.selectbox('Category', (categories), index=0)
-supplier_options = st.sidebar.selectbox('Supplier', (suppliers))
-department_options = st.sidebar.selectbox('Department', (departments))
+supplier_options = st.sidebar.selectbox('Supplier', (suppliers), index=0)
+department_options = st.sidebar.selectbox('Department', (departments), index=0)
 
