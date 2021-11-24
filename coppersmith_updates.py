@@ -40,6 +40,8 @@ def list_categories():
             continue
         else:
             search_list.append(row.Category)
+    search_list.append(" None")
+    search_list.sort()
     return search_list
 
 def list_suppliers():
@@ -49,6 +51,8 @@ def list_suppliers():
             continue
         else:
             search_list.append(row.Supplier)
+    search_list.append(" None")
+    search_list.sort()
     return search_list
 
 def list_departments():
@@ -58,6 +62,8 @@ def list_departments():
             continue
         else:
             search_list.append(row.Department)
+    search_list.append(" None")
+    search_list.sort()
     return search_list
 
 
@@ -80,7 +86,7 @@ for row in rows:
 st.sidebar.subheader("Sorting Options")
 
 # date_options = st.sidebar.selectbox('Date', ('11/23/2021', '11/24/2021'))
-category_options = st.sidebar.selectbox('Category', (categories))
+category_options = st.sidebar.selectbox('Category', (categories), index=0)
 supplier_options = st.sidebar.selectbox('Supplier', (suppliers))
 department_options = st.sidebar.selectbox('Department', (departments))
 
